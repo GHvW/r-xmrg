@@ -1,0 +1,10 @@
+bin
+obj
+
+.vs
+.vscode
+.ionide
+.idea
+.metals
+
+*.gz
