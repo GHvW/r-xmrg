@@ -11,10 +11,10 @@ namespace XMRG.Reader.Readers.HeaderReaders;
 
 public class DateTimeReader : IParser<DateTime> {
 
-    public (DateTime, ArraySegment<byte>)? Parse(
-        ArraySegment<byte> input
+    public (DateTime, ReadOnlyMemory<byte>)? Parse(
+        ReadOnlyMemory<byte> input 
     ) => 
         new NBytes(20)
-            .Select(bytes => DateTime.Parse(Encoding.Default.GetString(bytes)))
+            .Select(bytes => DateTime.Parse(Encoding.Default.GetString(bytes.Span)))
             .Parse(input);
 }

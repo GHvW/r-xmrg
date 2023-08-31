@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XMRG.Reader.Tests", "tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honeycomb.Core", "..\honeycomb\src\Honeycomb.Core\Honeycomb.Core.csproj", "{E5F46049-8B89-4743-809E-CD3E948197A2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherDotGovSample", "benchmarks\WeatherDotGovSample\WeatherDotGovSample.csproj", "{DEFF6D94-A27E-4DEF-B7DB-A2AA329260B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E5F46049-8B89-4743-809E-CD3E948197A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5F46049-8B89-4743-809E-CD3E948197A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5F46049-8B89-4743-809E-CD3E948197A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEFF6D94-A27E-4DEF-B7DB-A2AA329260B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEFF6D94-A27E-4DEF-B7DB-A2AA329260B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEFF6D94-A27E-4DEF-B7DB-A2AA329260B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEFF6D94-A27E-4DEF-B7DB-A2AA329260B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

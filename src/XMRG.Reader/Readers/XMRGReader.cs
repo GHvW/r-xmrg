@@ -1,11 +1,9 @@
 ﻿using Honeycomb.Core;
 using Honeycomb.Core.Parsers;
-using Honeycomb.Core.PrimitiveParsers;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 using XMRG.Reader.Headers;
 using XMRG.Reader.Readers.HeaderReaders;
@@ -28,8 +26,8 @@ public class XMRGReader : IParser<XMRG> {
         this.shortReader = shortReader;
     }
 
-    public (XMRG, ArraySegment<byte>)? Parse(
-        ArraySegment<byte> input
+    public (XMRG, ReadOnlyMemory<byte>)? Parse(
+        ReadOnlyMemory<byte> input
     ) =>
         (from bounds in new Padded<MapBounds>(new BoundsReader(this.intReader))
          from metadata in 

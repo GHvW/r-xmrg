@@ -9,14 +9,14 @@ namespace XMRG.Reader.Readers;
 public class Padded<A> : IParser<A> {
 
     private readonly IParser<A> reader;
-    private readonly IParser<ArraySegment<byte>> padding = new IntBytes();
+    private readonly IParser<ReadOnlyMemory<byte>> padding = new IntBytes();
 
     public Padded(IParser<A> reader) {
         this.reader = reader;
     }
 
-    public (A, ArraySegment<byte>)? Parse(
-        ArraySegment<byte> input
+    public (A, ReadOnlyMemory<byte>)? Parse(
+        ReadOnlyMemory<byte> input
     ) =>
         (from _prefixPad in this.padding
          from data in this.reader

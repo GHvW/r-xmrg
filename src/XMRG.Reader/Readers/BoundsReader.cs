@@ -17,8 +17,8 @@ public class BoundsReader : IParser<MapBounds> {
         this.intParser = intParser;
     }
 
-    public (MapBounds, ArraySegment<byte>)? Parse(
-        ArraySegment<byte> input
+    public (MapBounds, ReadOnlyMemory<byte>)? Parse(
+        ReadOnlyMemory<byte> input
     ) =>
         (from xor in this.intParser
          from yor in this.intParser

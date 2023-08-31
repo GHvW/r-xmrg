@@ -27,8 +27,8 @@ public class MetadataReader : IParser<Metadata> {
     }
 
 
-    public (Metadata, ArraySegment<byte>)? Parse(
-        ArraySegment<byte> input
+    public (Metadata, ReadOnlyMemory<byte>)? Parse(
+        ReadOnlyMemory<byte> input
     ) =>
         (this.build switch {
             MetadataBuild.Post1997 =>

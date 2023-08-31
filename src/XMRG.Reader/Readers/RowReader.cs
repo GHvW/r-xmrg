@@ -18,7 +18,9 @@ public class RowReader : IParser<IReadOnlyCollection<short>> {
         this.count = count;
     }
 
-    public (IReadOnlyCollection<short>, ArraySegment<byte>)? Parse(ArraySegment<byte> input) =>
+    public (IReadOnlyCollection<short>, ReadOnlyMemory<byte>)? Parse(
+        ReadOnlyMemory<byte> input
+    ) =>
         this.shortReader
             .Repeat(this.count)
             .Parse(input);

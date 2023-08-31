@@ -21,8 +21,8 @@ public class MetadataBuildReader : IParser<MetadataBuild> {
         this.columnCount = columnCount;
     }
 
-    public (MetadataBuild, ArraySegment<byte>)? Parse(
-        ArraySegment<byte> input
+    public (MetadataBuild, ReadOnlyMemory<byte>)? Parse(
+        ReadOnlyMemory<byte> input
     ) =>
         this.intReader
             .SelectMany<int, MetadataBuild>(it => {
