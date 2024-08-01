@@ -14,6 +14,7 @@ using XMRG.Reader.Readers.HeaderReaders;
 
 var summary = BenchmarkRunner.Run<ParseFile>();
 
+[MemoryDiagnoser]
 public class ParseFile {
 
     private IParser<int> readInt;
