@@ -27,8 +27,9 @@ public class MetadataReader : IParser<Metadata> {
     }
 
 
-    public (Metadata, ReadOnlyMemory<byte>)? Parse(
-        ReadOnlyMemory<byte> input
+    public ParseResult<Metadata>? Parse(
+        int currentIndex,
+        ReadOnlySpan<byte> input
     ) =>
         (this.build switch {
             MetadataBuild.Post1997 =>
@@ -47,5 +48,5 @@ public class MetadataReader : IParser<Metadata> {
             MetadataBuild.Pre1997 => new Fail<Metadata>(),
             _ => new Fail<Metadata>()
         })
-        .Parse(input);
+        .Parse(currentIndex, input);
 }

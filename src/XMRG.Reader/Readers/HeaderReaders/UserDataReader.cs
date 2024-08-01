@@ -12,8 +12,9 @@ namespace XMRG.Reader.Readers.HeaderReaders;
 
 public class UserDataReader : IParser<UserData> {
 
-    public (UserData, ReadOnlyMemory<byte>)? Parse(
-        ReadOnlyMemory<byte> input
+    public ParseResult<UserData>? Parse(
+        int currentIndex,
+        ReadOnlySpan<byte> input
     ) =>
         new NBytes(2)
             .SelectMany(it => {
@@ -39,5 +40,5 @@ public class UserDataReader : IParser<UserData> {
                     new UserData(
                         OperatingSystemType.Unknown,
                         Encoding.Default.GetString(userId.Span))))
-            .Parse(input);
+            .Parse(currentIndex, input);
 }

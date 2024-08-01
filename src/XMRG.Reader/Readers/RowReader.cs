@@ -2,9 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace XMRG.Reader.Readers;
 
@@ -18,10 +15,11 @@ public class RowReader : IParser<IReadOnlyCollection<short>> {
         this.count = count;
     }
 
-    public (IReadOnlyCollection<short>, ReadOnlyMemory<byte>)? Parse(
-        ReadOnlyMemory<byte> input
+    public ParseResult<IReadOnlyCollection<short>>? Parse(
+        int currentIndex,
+        ReadOnlySpan<byte> input
     ) =>
         this.shortReader
             .Repeat(this.count)
-            .Parse(input);
+            .Parse(currentIndex, input);
 }

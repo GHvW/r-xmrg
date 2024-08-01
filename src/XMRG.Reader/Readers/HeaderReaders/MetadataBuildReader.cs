@@ -21,8 +21,9 @@ public class MetadataBuildReader : IParser<MetadataBuild> {
         this.columnCount = columnCount;
     }
 
-    public (MetadataBuild, ReadOnlyMemory<byte>)? Parse(
-        ReadOnlyMemory<byte> input
+    public ParseResult<MetadataBuild>? Parse(
+        int currentIndex,
+        ReadOnlySpan<byte> input
     ) =>
         this.intReader
             .SelectMany<int, MetadataBuild>(it => {
@@ -31,5 +32,5 @@ public class MetadataBuildReader : IParser<MetadataBuild> {
                     ? new Succeed<MetadataBuild>(build.Value)
                     : new Fail<MetadataBuild>();
             })
-            .Parse(input);
+            .Parse(currentIndex, input);
 }

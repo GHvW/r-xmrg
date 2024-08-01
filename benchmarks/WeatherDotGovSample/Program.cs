@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
+// run with `dotnet run -c release`
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 
@@ -30,7 +32,7 @@ public class ParseFile {
 
         this.bytes = bytes;
 
-        var (readers, _) = new GetPrimitiveReaders().Parse(bytes) ?? throw new Exception("Didn't work");
+        var (readers, _) = new GetPrimitiveReaders().Parse(0, bytes) ?? throw new Exception("Didn't work");
 
         this.readInt = readers.Item1;
         this.readFloat = readers.Item2;
@@ -45,7 +47,7 @@ public class ParseFile {
                 this.readInt, 
                 this.readFloat, 
                 this.readShort)
-            .Parse(bytes) 
+            .Parse(0, bytes) 
             ?? throw new Exception("Bad read");
 
         return result;

@@ -27,11 +27,12 @@ public class GetPrimitiveReaders : IParser<(IParser<int>, IParser<float>, IParse
             : new Fail<(IParser<int>, IParser<float>, IParser<short>)>();
 
     // header is 4 int's long, if count returned by int reader is 16, endianness is correct
-    public ((IParser<int>, IParser<float>, IParser<short>), ReadOnlyMemory<byte>)? Parse(
-        ReadOnlyMemory<byte> input
+    public ParseResult<(IParser<int>, IParser<float>, IParser<short>)>? Parse(
+        int currentIndex,
+        ReadOnlySpan<byte> input
     ) =>
          this.bigIntReader
             .SelectMany(Bigs)
             .Or(this.littleIntReader.SelectMany(Smalls))
-            .Parse(input);
+            .Parse(currentIndex, input);
 }

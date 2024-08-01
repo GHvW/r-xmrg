@@ -1,10 +1,7 @@
 ﻿using Honeycomb.Core;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using XMRG.Reader.Headers;
 
@@ -17,13 +14,14 @@ public class BoundsReader : IParser<MapBounds> {
         this.intParser = intParser;
     }
 
-    public (MapBounds, ReadOnlyMemory<byte>)? Parse(
-        ReadOnlyMemory<byte> input
+    public ParseResult<MapBounds>? Parse(
+        int currentIndex,
+        ReadOnlySpan<byte> input
     ) =>
         (from xor in this.intParser
          from yor in this.intParser
          from cols in this.intParser
          from rows in this.intParser
          select new MapBounds(xor, yor, cols, rows))
-        .Parse(input);
+        .Parse(currentIndex, input);
 }
