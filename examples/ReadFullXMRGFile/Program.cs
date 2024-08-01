@@ -7,7 +7,7 @@ using XMRG.Reader.Readers.HeaderReaders;
 
 Console.WriteLine("Let's read XMRG");
 
-var bytes = File.ReadAllBytes(@"\xmrg0506199516z.gz");
+var bytes = File.ReadAllBytes(Environment.GetEnvironmentVariable("XMRG_TEST_FILE_DIR") + "\\xmrg0506199516z.gz");
 //var bytes = File.ReadAllBytes(@"\xmrg1107202218z.gz");
 //var bytes = File.ReadAllBytes(@"\xmrg6_2022110818f012.gz");
 //var bytes = File.ReadAllBytes(@"\xmrg0822202319z\xmrg0822202319z");
