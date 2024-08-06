@@ -13,10 +13,8 @@ namespace XMRG.Reader.Readers.HeaderReaders;
 
 public class ProcessFlagReader : IParser<ProcessFlag> {
 
-    public (ProcessFlag, ReadOnlyMemory<byte>)? Parse(
-        ReadOnlyMemory<byte> input
-    ) =>
+    public ParseResult<ProcessFlag>? Parse(int currentIndex, ReadOnlySpan<byte> input) =>
         new NBytes(8)
             .Select(data => new ProcessFlag(Encoding.Default.GetString(data.Span)))
-            .Parse(input);       
+            .Parse(currentIndex, input);       
 }

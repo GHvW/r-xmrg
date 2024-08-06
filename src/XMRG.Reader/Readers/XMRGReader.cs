@@ -26,8 +26,9 @@ public class XMRGReader : IParser<XMRG> {
         this.shortReader = shortReader;
     }
 
-    public (XMRG, ReadOnlyMemory<byte>)? Parse(
-        ReadOnlyMemory<byte> input
+    public ParseResult<XMRG>? Parse(
+        int currentIndex,
+        ReadOnlySpan<byte> input
     ) =>
         (from bounds in new Padded<MapBounds>(new BoundsReader(this.intReader))
          from metadata in 
@@ -37,7 +38,7 @@ public class XMRGReader : IParser<XMRG> {
                 .Or(new Succeed<Metadata?>(null))
          from rows in this.Rows(this.shortReader, bounds.Columns, bounds.Rows)
          select new XMRG(bounds, metadata, rows))
-        .Parse(input);
+        .Parse(currentIndex, input);
 
     private IParser<IReadOnlyCollection<IReadOnlyCollection<short>>> Rows(
         IParser<short> shortReader,

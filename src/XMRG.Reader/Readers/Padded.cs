@@ -9,18 +9,19 @@ namespace XMRG.Reader.Readers;
 public class Padded<A> : IParser<A> {
 
     private readonly IParser<A> reader;
-    private readonly IParser<ReadOnlyMemory<byte>> padding = new IntBytes();
+    private readonly IParser<int> padding = new LittleInt(); // TODO - this just needs to be skipped!!!
 
     public Padded(IParser<A> reader) {
         this.reader = reader;
     }
 
-    public (A, ReadOnlyMemory<byte>)? Parse(
-        ReadOnlyMemory<byte> input
+    public ParseResult<A>? Parse(
+        int currentIndex,
+        ReadOnlySpan<byte> input
     ) =>
         (from _prefixPad in this.padding
          from data in this.reader
          from _suffixPad in this.padding
          select data)
-        .Parse(input);
+        .Parse(currentIndex, input);
 }
